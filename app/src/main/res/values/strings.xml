@@ -6,4 +6,9 @@
     <string name="editText_hint_login">E-mail</string>
     <string name="text_sign_up">Sign Up</string>
     <string name="t_sign_with">Sign in with</string>
+    <string name="select_account_type">Select account type:</string>
+    <string-array name="spinner_select_acc_type">
+        <item>Client</item>
+        <item>Business</item>
+    </string-array>
 </resources>

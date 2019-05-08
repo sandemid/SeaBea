@@ -5,4 +5,9 @@
     <string name="editText_hint_password">Пароль</string>
     <string name="text_sign_up">Регистрация</string>
     <string name="t_sign_with">Войти с помощью</string>
+    <string name="select_account_type">Выберите тип учетной записи:</string>
+    <string-array name="spinner_select_acc_type">
+        <item>Клиент</item>
+        <item>Бизнес</item>
+    </string-array>
 </resources>
