@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_sign_in">Войти</string>
+    <string name="editText_hint_login">Почта</string>
+    <string name="editText_hint_password">Пароль</string>
+    <string name="text_sign_up">Регистрация</string>
+    <string name="t_sign_with">Войти с помощью</string>
+</resources>

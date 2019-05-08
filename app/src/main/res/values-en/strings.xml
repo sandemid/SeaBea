@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_sign_in" translatable="false">Sign in</string>
+    <string name="editText_hint_login" translatable="false">E-mail</string>
+    <string name="editText_hint_password" translatable="false">Password</string>
+    <string name="text_sign_up">Sign Up</string>
+    <string name="t_sign_with">Sign with</string>
+</resources>

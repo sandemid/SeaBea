@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name" translatable="false">Search Beauty</string>
+    <string name="editText_hint_password">Password</string>
+    <string name="button_sign_in">Sign in</string>
+    <integer name="com_vk_sdk_AppId">6971276</integer>
+    <string name="editText_hint_login">E-mail</string>
+    <string name="text_sign_up">Sign Up</string>
+    <string name="t_sign_with">Sign in with</string>
+</resources>
