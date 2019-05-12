@@ -121,12 +121,49 @@ public class RestPresenter extends MvpPresenter<RestView> {
                 });
     }
 
-    public void signUp (int userType, String email, String password, String confirmPassword
-                        , String firstName, String lastName, int sex, String city) {
-        StringBuilder error = null;
-        if (true) {
+    public void signUp (int userType, String email, String password
+                        , String firstName, String lastName, int sex) {
+        SeaBeaRepo.getSingleton().getAPI()
+                .userRegister(String.valueOf(userType), email, password, firstName, lastName, String.valueOf(sex))
+                .enqueue(new Callback<CheckAuthRequestRestModel>() {
+                    @Override
+                    public void onResponse(@NonNull Call<CheckAuthRequestRestModel> call,
+                                           @NonNull Response<CheckAuthRequestRestModel> response) {
+                        if (response.body() != null && response.isSuccessful()) {
+                            updateUserFields(response.body());
+                            getViewState().onRestSuccess("Server authorization successful");
+                        } else {
+                            getViewState().onRestFailure("Server authorization error!");
+                        }
+                    }
 
-        }
+                    @Override
+                    public void onFailure(@NonNull Call<CheckAuthRequestRestModel> call,@NonNull Throwable t) {
+                        getViewState().onRestFailure("Server authorization error!");
+                    }
+                });
+    }
+
+    public void ordinaryEntry (int userType, String email, String password) {
+        SeaBeaRepo.getSingleton().getAPI()
+                .ordinaryEntry(String.valueOf(userType), email, password)
+                .enqueue(new Callback<CheckAuthRequestRestModel>() {
+                    @Override
+                    public void onResponse(@NonNull Call<CheckAuthRequestRestModel> call,
+                                           @NonNull Response<CheckAuthRequestRestModel> response) {
+                        if (response.body() != null && response.isSuccessful()) {
+                            updateUserFields(response.body());
+                            getViewState().onRestSuccess("Server authorization successful");
+                        } else {
+                            getViewState().onRestFailure("Server authorization error!");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<CheckAuthRequestRestModel> call,@NonNull Throwable t) {
+                        getViewState().onRestFailure("Server authorization error!");
+                    }
+                });
     }
 
     private void updateUserFields(CheckAuthRequestRestModel response) {

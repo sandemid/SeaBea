@@ -87,7 +87,8 @@ public class AuthorizeActivity extends MvpAppCompatActivity
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.b_sign_in: {
-                presenterVerify.checkUserInputRegister(Objects.equals(metEmail.getText(), null) ? null : metEmail.getText().toString()
+                setEnabledViews(false);
+                presenterVerify.checkUserInput(Objects.equals(metEmail.getText(), null) ? null : metEmail.getText().toString()
                         , Objects.equals(metPassword.getText(), null) ? null : metPassword.getText().toString());
                 break;
             }
@@ -96,7 +97,7 @@ public class AuthorizeActivity extends MvpAppCompatActivity
                 break;
             }
             case R.id.ib_sign_vk: {
-                spSelectAccType.setEnabled(false);
+                setEnabledViews(false);
                 VKSdk.login(this, VKScope.EMAIL);
                 break;
             }
@@ -132,6 +133,11 @@ public class AuthorizeActivity extends MvpAppCompatActivity
         }
     }
 
+    private void setEnabledViews(boolean bol) {
+        metEmail.setEnabled(bol);
+        metPassword.setEnabled(bol);
+        spSelectAccType.setEnabled(bol);
+    }
 
     @Override
     public void onRestSuccess(String msg) {
@@ -152,7 +158,7 @@ public class AuthorizeActivity extends MvpAppCompatActivity
     public void onRestFailure(String error) {
         Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
         Log.e("RestAuth", error);
-        spSelectAccType.setEnabled(true);
+        setEnabledViews(true);
     }
 
 
@@ -165,11 +171,14 @@ public class AuthorizeActivity extends MvpAppCompatActivity
 
     @Override
     public void onCorrectInput() {
+        presenter.ordinaryEntry(spSelectAccType.getSelectedItemPosition() + 1
+                , metEmail.getText().toString(), metPassword.getText().toString());
         Toast.makeText(getApplicationContext(), "Input is correct", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onIncorrectInput(int errorCount) {
+        setEnabledViews(true);
         Toast.makeText(getApplicationContext(), "There are many errors in input: " + errorCount, Toast.LENGTH_LONG).show();
     }
 

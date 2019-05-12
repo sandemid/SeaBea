@@ -17,7 +17,7 @@ public class RegisterVerifyPresenter extends MvpPresenter <AuthorizeVerifableVie
         this.model = model;
     }
 
-    public void checkUserInputRegister(String... values) {
+    public void checkUserInput(String... values) {
         errorCount = 0;
         model.updateModel(values);
         checkEmail();

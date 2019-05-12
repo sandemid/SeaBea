@@ -26,4 +26,17 @@ public interface IOSeaBea {
                                                 @Query("userCity") String userCity,
                                                 @Query("userCountry") String userCountry,
                                                 @Query("userEmail") String userEmail);
+
+    @GET("data/2.5/weather")
+    Call<CheckAuthRequestRestModel> ordinaryEntry(@Query("email") String email,
+                                                @Query("password") String password,
+                                                @Query("accountType") String accountType);
+
+    @POST("data/2.5/weather")
+    Call<CheckAuthRequestRestModel> userRegister(@Query("userEmail") String userEmail,
+                                                 @Query("password") String password,
+                                                 @Query("accountType") String accountType,
+                                                 @Query("userFirstName") String userFirstName,
+                                                 @Query("userLastName") String userLastName,
+                                                 @Query("userSex") String userSex);
 }

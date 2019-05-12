@@ -2,6 +2,7 @@ package com.seabea.android;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,7 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.seabea.android.data.User;
 import com.seabea.android.models.RegisterModelImpl;
 import com.seabea.android.moxyviews.RegisterVerifableView;
 import com.seabea.android.moxyviews.RestView;
@@ -103,7 +105,8 @@ public class RegisterActivity extends MvpAppCompatActivity implements RestView, 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.b_sign_up: {
-                presenterVerify.checkUserInputRegister(Objects.equals(metEmail.getText(), null) ? null : metEmail.getText().toString()
+                setEnabledViews(false);
+                presenterVerify.checkUserInput(Objects.equals(metEmail.getText(), null) ? null : metEmail.getText().toString()
                     , Objects.equals(metPassword.getText(), null) ? null : metPassword.getText().toString()
                     , Objects.equals(metConfirmPassword.getText(), null) ? null : metConfirmPassword.getText().toString()
                     , Objects.equals(metFirstName.getText(), null) ? null : metFirstName.getText().toString()
@@ -116,23 +119,58 @@ public class RegisterActivity extends MvpAppCompatActivity implements RestView, 
         }
     }
 
+    private void setEnabledViews(boolean bol) {
+        spSelectAccType.setEnabled(bol);
+        metEmail.setEnabled(bol);
+        metPassword.setEnabled(bol);
+        metConfirmPassword.setEnabled(bol);
+        metFirstName.setEnabled(bol);
+        metLastName.setEnabled(bol);
+        spSelectSex.setEnabled(bol);
+        btnSignUp.setEnabled(bol);
+    }
+
     @Override
     public void onRestSuccess(String msg) {
+        Log.i("RestAuth", msg);
+        switch (User.getUser().getUserType()) {
+            case 1:
+                startUserActivity();
+                break;
+            case 2:
+                startBusinessActivity();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void startBusinessActivity() {
+
+    }
+
+    private void startUserActivity() {
 
     }
 
     @Override
     public void onRestFailure(String error) {
-
+        Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
+        Log.e("RestAuth", error);
+        setEnabledViews(true);
     }
 
     @Override
     public void onCorrectInput() {
-        Toast.makeText(getApplicationContext(), "Input is correct", Toast.LENGTH_LONG).show();
+        presenter.signUp(spSelectAccType.getSelectedItemPosition() + 1
+                , metEmail.getText().toString(), metPassword.getText().toString()
+                , metFirstName.getText().toString(), metLastName.getText().toString()
+                , spSelectSex.getSelectedItemPosition() + 1);
     }
 
     @Override
     public void onIncorrectInput(int errorCount) {
+        setEnabledViews(true);
         Toast.makeText(getApplicationContext(), "There are many errors in input: " + errorCount, Toast.LENGTH_LONG).show();
     }
 
