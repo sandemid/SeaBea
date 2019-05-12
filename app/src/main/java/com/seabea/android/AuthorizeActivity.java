@@ -184,12 +184,12 @@ public class AuthorizeActivity extends MvpAppCompatActivity
 
     @Override
     public void setEmailOnIncorrect(String error) {
-
+        metEmail.setError(error);
     }
 
     @Override
     public void setPasswordOnIncorrect(String error) {
-
+        metPassword.setError(error);
     }
 
 }

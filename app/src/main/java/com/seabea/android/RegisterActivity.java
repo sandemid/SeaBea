@@ -176,22 +176,23 @@ public class RegisterActivity extends MvpAppCompatActivity implements RestView, 
 
     @Override
     public void setEmailOnIncorrect(String error) {
-
+        metEmail.setError(error);
     }
 
     @Override
     public void setPasswordOnIncorrect(String error) {
-
+        metPassword.setError(error);
+        metConfirmPassword.setError(error);
     }
 
     @Override
     public void setFirstNameOnIncorrect(String error) {
-
+        metFirstName.setError(error);
     }
 
     @Override
     public void setLastNameOnIncorrect(String error) {
-
+        metLastName.setError(error);
     }
 
 }
