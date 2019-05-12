@@ -7,8 +7,18 @@
     <string name="text_sign_up">Sign Up</string>
     <string name="t_sign_with">Sign in with</string>
     <string name="select_account_type">Select account type:</string>
+    <string name="text_view_check_authorize">Check authorize...</string>
+    <string name="editText_hint_password_confirm">Confirm password</string>
+    <string name="textView_sex">Sex</string>
+    <string name="editText_name_first">First name</string>
+    <string name="editText_name_last">Last name</string>
+    <string name="editText_city">City</string>
     <string-array name="spinner_select_acc_type">
         <item>Client</item>
         <item>Business</item>
+    </string-array>
+    <string-array name="spinner_select_sex">
+        <item>Female</item>
+        <item>Male</item>
     </string-array>
 </resources>

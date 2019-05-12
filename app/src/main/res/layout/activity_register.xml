@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        tools:context=".AuthorizeActivity">
+
+        <TextView
+            android:id="@+id/textView_select_acc_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_account_type"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:textSize="18sp"
+            android:textColor="#589ce0"
+            />
+
+        <Spinner
+            android:id="@+id/spinner_account_type"
+            android:layout_width="280dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/textView_select_acc_type"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/met_login"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/spinner_account_type"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:hint="@string/editText_hint_login"
+            android:inputType="textEmailAddress"
+            app:met_baseColor="#0056d3"
+            app:met_clearButton="true"
+            app:met_errorColor="#982360"
+            app:met_primaryColor="#0056d3" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/met_password"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:hint="@string/editText_hint_password"
+            android:inputType="textPassword"
+            app:met_baseColor="#0056d3"
+            app:met_clearButton="true"
+            app:met_errorColor="#982360"
+            app:met_primaryColor="#0056d3"
+            android:layout_below="@id/met_login"
+            android:layout_centerHorizontal="true"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/met_password_confirm"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/met_password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:hint="@string/editText_hint_password_confirm"
+            android:inputType="textPassword"
+            app:met_baseColor="#0056d3"
+            app:met_clearButton="true"
+            app:met_errorColor="#982360"
+            app:met_primaryColor="#0056d3" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/met_name_first"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/met_password_confirm"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:hint="@string/editText_name_first"
+            android:inputType="textEmailAddress"
+            app:met_baseColor="#0056d3"
+            app:met_clearButton="true"
+            app:met_errorColor="#982360"
+            app:met_primaryColor="#0056d3" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/met_name_last"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/met_name_first"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:hint="@string/editText_name_last"
+            android:inputType="textEmailAddress"
+            app:met_baseColor="#0056d3"
+            app:met_clearButton="true"
+            app:met_errorColor="#982360"
+            app:met_primaryColor="#0056d3" />
+
+        <TextView
+            android:id="@+id/textView_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_marginStart="70dp"
+            android:layout_below="@id/met_name_last"
+            android:text="@string/textView_sex"
+            android:textColor="#589ce0"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner_sex"
+            android:layout_width="185dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/met_name_last"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="15dp" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/met_сity"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/spinner_sex"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:hint="@string/editText_city"
+            android:inputType="textEmailAddress"
+            app:met_baseColor="#0056d3"
+            app:met_clearButton="true"
+            app:met_errorColor="#982360"
+            app:met_primaryColor="#0056d3" />
+
+        <Button
+            android:id="@+id/b_sign_up"
+            android:layout_width="176dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/text_sign_up"
+            android:layout_below="@+id/met_сity"
+            android:layout_centerHorizontal="true"/>
+
+
+    </RelativeLayout>
+
+</ScrollView>

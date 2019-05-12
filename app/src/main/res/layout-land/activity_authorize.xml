@@ -15,28 +15,27 @@
             android:id="@+id/textView_select_acc_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="25dp"
             android:text="@string/select_account_type"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:textSize="18sp"
             android:textColor="#589ce0"
-            />
+            android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/spinner_account_type"
-            android:layout_width="280dp"
+            android:layout_width="270dp"
             android:layout_height="35dp"
             android:layout_below="@id/textView_select_acc_type"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="35dp"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/met_login"
             android:layout_width="270dp"
             android:layout_height="62dp"
             android:layout_below="@id/spinner_account_type"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
+            android:layout_marginStart="35dp"
             android:hint="@string/editText_hint_login"
             android:inputType="textEmailAddress"
             app:met_baseColor="#0056d3"
@@ -49,34 +48,32 @@
             android:layout_width="270dp"
             android:layout_height="65dp"
             android:layout_marginTop="15dp"
+            android:layout_marginStart="35dp"
             android:hint="@string/editText_hint_password"
             android:inputType="textPassword"
             app:met_baseColor="#0056d3"
             app:met_clearButton="true"
             app:met_errorColor="#982360"
             app:met_primaryColor="#0056d3"
-            android:layout_below="@id/met_login"
-            android:layout_centerHorizontal="true"/>
+            android:layout_below="@id/met_login"/>
 
         <Button
             android:id="@+id/b_sign_in"
             android:layout_width="176dp"
             android:layout_height="50dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="45dp"
             android:text="@string/button_sign_in"
-            android:layout_below="@id/met_password"
-            android:layout_centerHorizontal="true"/>
+            android:layout_marginStart="360dp"/>
 
         <TextView
             android:id="@+id/t_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:text="@string/text_sign_up"
             android:textSize="20sp"
             android:layout_below="@id/b_sign_in"
-            android:layout_centerHorizontal="true"/>
-
+            android:layout_marginStart="410dp"/>
 
         <TextView
             android:id="@+id/t_sign_with"
@@ -85,14 +82,14 @@
             android:layout_marginTop="30dp"
             android:text="@string/t_sign_with"
             android:layout_below="@id/t_sign_up"
-            android:layout_centerHorizontal="true"/>
+            android:layout_marginStart="410dp"/>
 
         <ImageButton
             android:id="@+id/ib_sign_vk"
             android:layout_width="62dp"
             android:layout_height="58dp"
             android:layout_below="@id/t_sign_with"
-            android:layout_centerHorizontal="true"
+            android:layout_marginStart="415dp"
             android:layout_marginTop="15dp"
             android:background="#FFFFFF"
             android:src="@mipmap/ic_vk_sign_in" />
