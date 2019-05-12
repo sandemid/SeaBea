@@ -7,35 +7,38 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.seabea.android.models.RegisterModelImpl;
+import com.seabea.android.moxyviews.RegisterVerifableView;
 import com.seabea.android.moxyviews.RestView;
-import com.seabea.android.moxyviews.VerifableView;
+import com.seabea.android.presenters.RegisterVerifyPresenter;
 import com.seabea.android.presenters.RestPresenter;
-import com.seabea.android.presenters.VerifyPresenter;
 
-public class RegisterActivity extends MvpAppCompatActivity implements RestView, VerifableView, View.OnClickListener {
+import java.util.Objects;
+
+public class RegisterActivity extends MvpAppCompatActivity implements RestView, RegisterVerifableView, View.OnClickListener {
 
     Spinner spSelectAccType;
-    MaterialEditText metLogin;
+    MaterialEditText metEmail;
     MaterialEditText metPassword;
     MaterialEditText metConfirmPassword;
     MaterialEditText metFirstName;
     MaterialEditText metLastName;
     Spinner spSelectSex;
-    MaterialEditText metCity;
     Button btnSignUp;
 
 
     @InjectPresenter
-    VerifyPresenter presenterVerify;
+    RegisterVerifyPresenter presenterVerify;
 
     @ProvidePresenter
-    VerifyPresenter getVerifyPresenter() {
-        return new VerifyPresenter();
+    RegisterVerifyPresenter getVerifyPresenter() {
+        return new RegisterVerifyPresenter(new RegisterModelImpl());
     }
 
     @InjectPresenter
@@ -58,13 +61,12 @@ public class RegisterActivity extends MvpAppCompatActivity implements RestView, 
 
     private void initViews() {
         spSelectAccType = findViewById(R.id.spinner_account_type);
-        metLogin = findViewById(R.id.met_login);
+        metEmail = findViewById(R.id.met_email);
         metPassword = findViewById(R.id.met_password);
         metConfirmPassword = findViewById(R.id.met_password_confirm);
         metFirstName = findViewById(R.id.met_name_first);
         metLastName = findViewById(R.id.met_name_last);
         spSelectSex = findViewById(R.id.spinner_sex);
-        metCity = findViewById(R.id.met_сity);
         btnSignUp = findViewById(R.id.b_sign_up);
         setViewMethods();
     }
@@ -99,7 +101,19 @@ public class RegisterActivity extends MvpAppCompatActivity implements RestView, 
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.b_sign_up: {
+                presenterVerify.checkUserInputRegister(Objects.equals(metEmail.getText(), null) ? null : metEmail.getText().toString()
+                    , Objects.equals(metPassword.getText(), null) ? null : metPassword.getText().toString()
+                    , Objects.equals(metConfirmPassword.getText(), null) ? null : metConfirmPassword.getText().toString()
+                    , Objects.equals(metFirstName.getText(), null) ? null : metFirstName.getText().toString()
+                    , Objects.equals(metLastName.getText(), null) ? null : metLastName.getText().toString());
+                break;
+            }
+            default: {
+                break;
+            }
+        }
     }
 
     @Override
@@ -113,12 +127,33 @@ public class RegisterActivity extends MvpAppCompatActivity implements RestView, 
     }
 
     @Override
-    public void onCorrectInput(String msg) {
+    public void onCorrectInput() {
+        Toast.makeText(getApplicationContext(), "Input is correct", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onIncorrectInput(int errorCount) {
+        Toast.makeText(getApplicationContext(), "There are many errors in input: " + errorCount, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setEmailOnIncorrect(String error) {
 
     }
 
     @Override
-    public void onIncorrectInput(String error) {
+    public void setPasswordOnIncorrect(String error) {
 
     }
+
+    @Override
+    public void setFirstNameOnIncorrect(String error) {
+
+    }
+
+    @Override
+    public void setLastNameOnIncorrect(String error) {
+
+    }
+
 }

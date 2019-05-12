@@ -31,7 +31,7 @@
             android:layout_marginTop="15dp" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/met_login"
+            android:id="@+id/met_email"
             android:layout_width="270dp"
             android:layout_height="62dp"
             android:layout_below="@id/spinner_account_type"
@@ -55,7 +55,7 @@
             app:met_clearButton="true"
             app:met_errorColor="#982360"
             app:met_primaryColor="#0056d3"
-            android:layout_below="@id/met_login"
+            android:layout_below="@id/met_email"
             android:layout_centerHorizontal="true"/>
 
         <Button

@@ -6,6 +6,5 @@ public interface RestView extends MvpView {
 
     void onRestSuccess(String msg);
     void onRestFailure(String error);
-    void onIncorrectInput(String error);
 
 }

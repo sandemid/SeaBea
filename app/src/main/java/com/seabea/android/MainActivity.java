@@ -70,11 +70,6 @@ public class MainActivity extends MvpAppCompatActivity implements RestView {
         finish();
     }
 
-    @Override
-    public void onIncorrectInput(String error) {
-
-    }
-
     private void startBusinessActivity() {
 
     }

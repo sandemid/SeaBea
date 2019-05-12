@@ -16,7 +16,10 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.seabea.android.data.User;
+import com.seabea.android.models.RegisterModelImpl;
+import com.seabea.android.moxyviews.AuthorizeVerifableView;
 import com.seabea.android.moxyviews.RestView;
+import com.seabea.android.presenters.RegisterVerifyPresenter;
 import com.seabea.android.presenters.RestPresenter;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
@@ -24,15 +27,26 @@ import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
 
+import java.util.Objects;
+
 public class AuthorizeActivity extends MvpAppCompatActivity
-        implements RestView, View.OnClickListener {
+        implements RestView, AuthorizeVerifableView, View.OnClickListener {
 
     Spinner spSelectAccType;
-    MaterialEditText metLogin;
+    MaterialEditText metEmail;
     MaterialEditText metPassword;
     Button btnSignIn;
     TextView txtSignUp;
     ImageButton btnSignVK;
+
+
+    @InjectPresenter
+    RegisterVerifyPresenter presenterVerify;
+
+    @ProvidePresenter
+    RegisterVerifyPresenter getVerifyPresenter() {
+        return new RegisterVerifyPresenter(new RegisterModelImpl());
+    }
 
     @InjectPresenter
     RestPresenter presenter;
@@ -53,7 +67,7 @@ public class AuthorizeActivity extends MvpAppCompatActivity
         txtSignUp = findViewById(R.id.t_sign_up);
         btnSignIn = findViewById(R.id.b_sign_in);
         btnSignVK = findViewById(R.id.ib_sign_vk);
-        metLogin = findViewById(R.id.met_login);
+        metEmail = findViewById(R.id.met_email);
         metPassword = findViewById(R.id.met_password);
         spSelectAccType = findViewById(R.id.spinner_account_type);
         setViewMethods();
@@ -73,11 +87,11 @@ public class AuthorizeActivity extends MvpAppCompatActivity
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.b_sign_in: {
-                Toast.makeText(this, "R.id.b_sign_in", Toast.LENGTH_LONG).show();
+                presenterVerify.checkUserInputRegister(Objects.equals(metEmail.getText(), null) ? null : metEmail.getText().toString()
+                        , Objects.equals(metPassword.getText(), null) ? null : metPassword.getText().toString());
                 break;
             }
             case R.id.t_sign_up: {
-                Toast.makeText(this, "R.id.t_sign_up", Toast.LENGTH_LONG).show();
                 startRegisterActivity();
                 break;
             }
@@ -141,10 +155,6 @@ public class AuthorizeActivity extends MvpAppCompatActivity
         spSelectAccType.setEnabled(true);
     }
 
-    @Override
-    public void onIncorrectInput(String error) {
-        Log.e("ViewInput", error);
-    }
 
     private void startBusinessActivity() {
 
@@ -152,4 +162,25 @@ public class AuthorizeActivity extends MvpAppCompatActivity
 
     private void startUserActivity() {
     }
+
+    @Override
+    public void onCorrectInput() {
+        Toast.makeText(getApplicationContext(), "Input is correct", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onIncorrectInput(int errorCount) {
+        Toast.makeText(getApplicationContext(), "There are many errors in input: " + errorCount, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setEmailOnIncorrect(String error) {
+
+    }
+
+    @Override
+    public void setPasswordOnIncorrect(String error) {
+
+    }
+
 }
