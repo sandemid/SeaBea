@@ -145,6 +145,7 @@ public class AuthorizeActivity extends MvpAppCompatActivity
         switch (User.getUser().getUserType()) {
             case 1:
                 startUserActivity();
+                finish();
                 break;
             case 2:
                 startBusinessActivity();
@@ -167,6 +168,8 @@ public class AuthorizeActivity extends MvpAppCompatActivity
     }
 
     private void startUserActivity() {
+        Intent intent = new Intent(AuthorizeActivity.this, UserActivity.class);
+        startActivity(intent);
     }
 
     @Override

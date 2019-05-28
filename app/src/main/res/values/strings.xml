@@ -13,6 +13,8 @@
     <string name="editText_name_first">First name</string>
     <string name="editText_name_last">Last name</string>
     <string name="editText_city">City</string>
+    <string name="tab_text_1">Поиск салона</string>
+    <string name="tab_text_2">Мои записи</string>
     <string-array name="spinner_select_acc_type">
         <item>Client</item>
         <item>Business</item>

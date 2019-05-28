@@ -1,7 +1,9 @@
 package com.seabea.android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +22,9 @@ import com.seabea.android.moxyviews.RegisterVerifableView;
 import com.seabea.android.moxyviews.RestView;
 import com.seabea.android.presenters.RegisterVerifyPresenter;
 import com.seabea.android.presenters.RestPresenter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Objects;
 
@@ -59,6 +64,24 @@ public class RegisterActivity extends MvpAppCompatActivity implements RestView, 
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         initViews();
+//        JSONObject jsonObject = null;
+//        String access = null;
+//        try {
+//            jsonObject = new JSONObject("{\"tokens\":{\"access\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6InJudFVPNXZQZ0lpOVdFa2t5OThPaWNaNlZXSzBpWXRfIn0.eyJpc3MiOiJodHRwOlwvXC9yZWFjdC1naXQ6Nzg4OFwvIiwiYXVkIjoiaHR0cDpcL1wvcmVhY3QtZ2l0Ojc4ODhcLyIsImp0aSI6InJudFVPNXZQZ0lpOVdFa2t5OThPaWNaNlZXSzBpWXRfIiwiaWF0IjoxNTU3NzY3MzAzLCJleHAiOjE1NTc3Njc5MDMsInVpZCI6MSwidXNlciI6eyJpZCI6MSwibG9naW4iOiJhZG1pbiIsImZpcnN0X25hbWUiOm51bGwsImxhc3RfbmFtZSI6bnVsbH19.1XV-DNVmJ7Fvksw51Y2_kZs2s1w8PM89Wfdmk9B7w7w\",\"refresh\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6IjJyZzI4QTExNS02WHBGazlVaTc2YzdfZ09tYlljS1lzIn0.eyJpc3MiOiJodHRwOlwvXC9yZWFjdC1naXQ6Nzg4OFwvIiwiYXVkIjoiaHR0cDpcL1wvcmVhY3QtZ2l0Ojc4ODhcLyIsImp0aSI6IjJyZzI4QTExNS02WHBGazlVaTc2YzdfZ09tYlljS1lzIiwiaWF0IjoxNTU3NzY3MzAzLCJleHAiOjE1NjAzNTkzMDMsInVpZCI6MX0.VEZvGmu_olGSvPNRf0VYow5eFdHBLqN0ylbBwGWsmZw\"},\"expire_at\":1557767903}");
+//            access = jsonObject.getJSONObject("tokens").getString("access");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        String[] accessSplit = new String[0];
+//        if (access != null) {
+//            accessSplit = access.split("[.]");
+//        }
+//        String jws = new String(Base64.decode(accessSplit[1],Base64.NO_WRAP));
+//        try {
+//            jsonObject = new JSONObject(new String(Base64.decode(accessSplit[1],Base64.NO_WRAP)));
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void initViews() {
@@ -136,6 +159,7 @@ public class RegisterActivity extends MvpAppCompatActivity implements RestView, 
         switch (User.getUser().getUserType()) {
             case 1:
                 startUserActivity();
+                finish();
                 break;
             case 2:
                 startBusinessActivity();
@@ -150,7 +174,8 @@ public class RegisterActivity extends MvpAppCompatActivity implements RestView, 
     }
 
     private void startUserActivity() {
-
+        Intent intent = new Intent(RegisterActivity.this, UserActivity.class);
+        startActivity(intent);
     }
 
     @Override
